@@ -1,0 +1,204 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        @media (max-width: 37.5em) {
+            // 600px
+            @content;
+        }
+    }
+    @if $breakpoint == tab-port {
+        @media (max-width: 56.25em) {
+            // 900px
+            @content;
+        }
+    }
+    @if $breakpoint == tab-land {
+        @media (max-width: 75em) {
+            // 1200px
+            @content;
+        }
+    }
+    @if $breakpoint == big-desktop {
+        @media (max-width: 112.5em) {
+            // 1800px
+            @content;
+        }
+    }
+}
+
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @include respond(tab-land) {
+        margin: 0 10px;
+    }
+}
+
+.page-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 63px;
+
+    @include respond(phone) {
+        margin-bottom: 40px;
+    }
+}
+
+.profile {
+    &__info {
+        text-align: center;
+    }
+
+    &__image {
+        $size: 156px;
+        width: $size;
+        height: $size;
+        object-fit: cover;
+        border-radius: 60px;
+
+        @include respond(phone) {
+            $size: 100px;
+            width: $size;
+            height: $size;
+        }
+    }
+
+    &__name {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
+        color: #4e5150;
+        margin: 0;
+        margin-bottom: 8px;
+
+        @include respond(phone) {
+            font-size: 14px;
+        }
+    }
+
+    &__address {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 17px;
+        color: #a9a9a9;
+
+        @include respond(phone) {
+            font-size: 10px;
+        }
+    }
+
+    &-statistic {
+        display: flex;
+    }
+
+    &-statisticItem {
+        background: #e5e5e5;
+        border-radius: 16px;
+        padding: 15px 25px;
+        min-width: 100px;
+        text-align: center;
+
+        @include respond(phone) {
+            padding: 10px 15px;
+            min-width: 80px;
+        }
+
+        &:not(:last-child) {
+            margin-right: 25px;
+
+            @include respond(phone) {
+                margin-right: 12px;
+            }
+        }
+
+        > * {
+            font-weight: 600;
+            margin: 0;
+        }
+
+        &__number {
+            font-size: 18px;
+            margin-bottom: 3px;
+
+            @include respond(phone) {
+                font-size: 12px;
+            }
+        }
+
+        &__name {
+            font-size: 14px;
+            @include respond(phone) {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.page-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 300px);
+    grid-gap: 32px;
+
+    @include respond(phone) {
+        grid-template-rows: repeat(3, 150px);
+        grid-gap: 10px;
+    }
+}
+
+.profile__gallery {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 20px;
+
+    img {
+        border-radius: 20px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+        transform: scale(1.02);
+    }
+
+    &--2 {
+        grid-column: span 2;
+    }
+
+    &--3 {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+    &--4 {
+        grid-row: span 2;
+    }
+}
+
+.page-footer {
+    margin-top: 100px;
+    text-align: center;
+    @include respond(phone) {
+        margin-top: 40px;
+    }
+
+    &__text {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 17px;
+        color: #a9a9a9;
+    }
+}
